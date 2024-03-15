@@ -140,31 +140,32 @@ def greedy_action(player: Player, board: Board):
         print(f"Took gems: {gems_taken}")
 
 
-board = Board(deck=CARDS, nobles=NOBLES, T=5)  # T=5 assumes 5 tokens of each gem type are available
 
-player = Player()
 
-for turn in range(1, 100):  # Simulate 20 turns
-    print(f"Turn {turn}")
-    greedy_action(player, board)  # Pass the board instance, not the Board class
-    if player.score >= 15:
-        print("Player reached 15 points!")
-        break
+def play(n: int = card_amount, m: int = noble_amount, p: int = 15, T: int = 5):
+    cards = CARDS if n >= card_amount else random.sample(CARDS, n)
+    nobles = NOBLES if m >= noble_amount else random.sample(NOBLES, m)
 
-# def play(n: int = card_amount, m: int = noble_amount, p: int = 15, T: int = 5):
-#     # initialization
-#     cards = CARDS
-#     if n < card_amount:
-#         cards = random.sample(CARDS, n)
-#
-#     nobles = NOBLES
-#     if m < noble_amount:
-#         nobles = random.sample(NOBLES, m)
-#
-#     p = Player()
-#
-#     b = Board(cards, nobles, T)
-#
-#     # play with greedy algo
-#     return greedy_play(p, b, p)
-#     pass
+    player = Player()
+    board = Board(cards, nobles, T * 5)  #
+
+    turn = 0
+    while player.score < p and turn < 100:
+        greedy_action(player, board)
+        turn += 1
+
+    return player.score >= p, turn
+
+
+n_cards = 90
+n_nobles = 10
+target_points = 15
+initial_tokens = 4
+
+game_won, turns_taken = play(n=n_cards, m=n_nobles, p=target_points, T=initial_tokens)
+
+if game_won:
+    print(f"玩家赢得了游戏，在{turns_taken}回合内达到了{target_points}分！")
+else:
+    print(f"玩家未能在{turns_taken}回合内赢得游戏。")
+
