@@ -41,11 +41,3 @@ class Player:
     # what the player can afford right now
     def purchasing_power(self) -> List[int]:
         return [x + y for x, y in zip(self.gems, self.cards)]
-
-c = Card([2, 2, 0, 0, 0], 0, Gem.GREEN)
-n = Noble([3, 3, 3, 0, 0])
-b = Board([c], [n])
-
-
-
-#b = Board(CARDS, NOBLES)

@@ -127,15 +127,13 @@ NOBLES = [(0, 0, 0, 4, 4),
 def greedy_play(p:Player, b:Board, p:int, s:int=0):
     pass
 
-def play(n:int=card_amount, m:int=noble_amount, p:int=15, T:int=5):
+def play(n:int=card_amount, m:int=3, p:int=15, T:int=5):
     # initialization
     cards = CARDS
     if n < card_amount:
         cards = random.sample(CARDS, n)
     
-    nobles = NOBLES
-    if m < noble_amount:
-        nobles = random.sample(NOBLES, m)
+    nobles = random.sample(NOBLES, m)
     
     p = Player()
 
