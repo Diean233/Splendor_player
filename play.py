@@ -140,14 +140,14 @@ def greedy_action(player: Player, board: Board):
         print(f"Took gems: {gems_taken}")
 
 
-
-
 def play(n: int = card_amount, m: int = noble_amount, p: int = 15, T: int = 5):
-    cards = CARDS if n >= card_amount else random.sample(CARDS, n)
-    nobles = NOBLES if m >= noble_amount else random.sample(NOBLES, m)
+
+    cards = random.sample(CARDS, n)
+
+    nobles = random.sample(NOBLES, m)
 
     player = Player()
-    board = Board(cards, nobles, T * 5)  #
+    board = Board(cards, nobles, T)  #
 
     turn = 0
     while player.score < p and turn < 100:
@@ -168,4 +168,3 @@ if game_won:
     print(f"玩家赢得了游戏，在{turns_taken}回合内达到了{target_points}分！")
 else:
     print(f"玩家未能在{turns_taken}回合内赢得游戏。")
-
