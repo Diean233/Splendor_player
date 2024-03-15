@@ -26,12 +26,38 @@ class Noble:
     def satisfied(self, player_gems:List[int]) -> bool:
         return 5 == sum(self.gems[i] <= player_gems[i] for i in range(5))
 
+# class Board:
+#     def __init__(self, deck:List[Card], nobles:List[Noble], T:int=5):
+#         self.deck = deck
+#         self.nobles = nobles
+#         self.T = T
+
 class Board:
-    def __init__(self, deck:List[Card], nobles:List[Noble], T:int=5):
+    def __init__(self, deck: List[Card], nobles: List[Noble], T: int = 5):
         self.deck = deck
         self.nobles = nobles
-        self.T = T
+        self.T = [T] * 5
 
+
+# class Player:
+#     def __init__(self):
+#         self.gems = [0, 0, 0, 0, 0]
+#         self.cards = [0, 0, 0, 0, 0]
+#         self.score = 0
+#
+#     # what the player can afford right now
+#     def purchasing_power(self) -> List[int]:
+#         return [x + y for x, y in zip(self.gems, self.cards)]
+
+c = Card([2, 2, 0, 0, 0], 0, Gem.GREEN)
+n = Noble([3, 3, 3, 0, 0])
+b = Board([c], [n])
+
+
+
+#b = Board(CARDS, NOBLES)
+
+# branch olin
 class Player:
     def __init__(self):
         self.gems = [0, 0, 0, 0, 0]
@@ -41,3 +67,4 @@ class Player:
     # what the player can afford right now
     def purchasing_power(self) -> List[int]:
         return [x + y for x, y in zip(self.gems, self.cards)]
+
