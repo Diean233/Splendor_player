@@ -144,7 +144,7 @@ board = Board(deck=CARDS, nobles=NOBLES, T=5)  # T=5 assumes 5 tokens of each ge
 
 player = Player()
 
-for turn in range(1, 21):  # Simulate 20 turns
+for turn in range(1, 100):  # Simulate 20 turns
     print(f"Turn {turn}")
     greedy_action(player, board)  # Pass the board instance, not the Board class
     if player.score >= 15:
